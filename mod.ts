@@ -8,12 +8,15 @@ type Options = {
 
 const parse = await new cmd.Command<Options>()
   .name("deno-static")
-  .version("1.0.0")
-  .description("Convert file to ts file")
+  .version("1.1.0")
+  .description("generate typescript from static file")
   .option('-d, --deep <deep:number>', 'max recursive depth')
   .option('-e, --ext <ext:string[]>', 'include file extensions')
   .option('-o, --overwrite [overwrite:boolean]', 'overwrite exist file')
   .arguments('<input> [output]')
+  .example('generate for single file', 'deno-static README.md')
+  .example('generate for folder', 'deno-static static/')
+  .example('output to other folder', 'deno-static -o static/ dist/')
   .parse(Deno.args);
 
 const input = parse.args[0]
